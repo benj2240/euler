@@ -13,12 +13,11 @@ def prime_generator
         y.yield n
       end
     end
-  end
+  end.lazy
 end
 
 def euler007 n
   prime_generator
-    .lazy
     .drop(n-1)
     .take(1)
     .to_a
