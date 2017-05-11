@@ -7,7 +7,5 @@
 # - So the sum of quadratic numbers increases as a cube
 # From there it's just a matter of finding the coefficients
 def euler028 n
-  throw "all spirals have a positive odd integer size" if n.even? || n < 1
-  x = (n - 1) / 2
-  (16*x**3 + 30*x**2 + 26*x + 3) / 3
+  (4*n**3 + 3*n**2 + 8*n - 9) / 6
 end
