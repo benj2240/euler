@@ -5,8 +5,12 @@ module Enumerable
 end
 
 class Integer
+  def digits
+    self.to_s.chars.map{ |c| c.to_i }
+  end
+  
   def acceptable? power
-    self == self.to_s.chars.map{ |c| c.to_i**power }.sum
+    self == digits.map{ |d| d**power }.sum
   end
 end
 
