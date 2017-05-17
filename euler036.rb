@@ -5,10 +5,10 @@ module Enumerable
 end
 
 class Integer
-	def palindromic? base = 10
+  def palindromic? base = 10
     str = self.to_s base
     str == str.reverse
-	end
+  end
 end
 
 def euler036 n
