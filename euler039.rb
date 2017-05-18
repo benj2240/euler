@@ -9,12 +9,12 @@ def cantor_pairs
 end
 
 def coprime? m, n
-  m.gcd n == 1
+  m.gcd(n) == 1
 end
 
 def primitive_pythagorean_triplets
   cantor_pairs
-    .select{ |m, n| m > n && n > 0 && (m + n).odd? && coprime? m, n }
+    .select{ |m, n| m > n && n > 0 && (m + n).odd? && coprime?(m, n) }
     .map{ |m, n| [2*m*n, m*m - n*n, m*m + n*n] }
 end
 
