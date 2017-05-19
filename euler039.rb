@@ -20,11 +20,21 @@ end
 
 def euler039 n
   sums = Hash.new 0
-  primitive_pythagorean_triplets.each do |a, b, c|
-    sum = a + b + c
-    (1..n/sum).each do |factor|
-      sums[sum * factor] += 1
-    end
-  end
-  sums.max_by{ |sum, triplet_count| triplet_count }
+
+  # The sums of the triplets are not strictly increasing.
+  # However, if the kth sum is smaller than the (k-1)th sum,
+  #   then the kth sum is also smaller than the jth sum,
+  #   for all j > k
+  # In other words, each time the sequence "dips",
+  #   all subsequent values will be above that trough.
+  # So stop searching for triplets once there is a "dip" above N
+  primitive_pythagorean_triplets
+    .map{ |a, b, c| a + b + c }
+    .each_cons(2)
+    .take_while{ |sum, next_sum| sum > next_sum || sum <= n }
+    .each{ |sum, _| (1..n/sum)
+      .each{ |factor| sums[sum * factor] += 1 } }
+
+  sum, triplet_count = sums.max_by{ |s, count| count }
+  return sum
 end
