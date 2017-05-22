@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fibonacci.cs" />
+    <Compile Include="ICollectionExtensions.cs" />
     <Compile Include="IDictionaryExtensions.cs" />
     <Compile Include="IEnumerableExtensions.cs" />
     <Compile Include="Input.cs" />

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Numerics;
 
 namespace Euler
 {
@@ -185,6 +184,21 @@ namespace Euler
     {
       return Triangle.Sequence()
         .First(t => t.DivisorCount() > count);
+    }
+
+    /// <summary>
+    /// The first ten digits of the sum of a static set of large input numbers
+    /// </summary>
+    public static long Euler013()
+    {
+      var result = Input.Euler013
+        .Select(str => BigInteger.Parse(str))
+        .Aggregate((a, b) => a + b );
+
+      var size = (int)Math.Ceiling(BigInteger.Log10(result + 1));
+      var divisor = BigInteger.Pow(new BigInteger(10), size - 10);
+      
+      return (long)(result / divisor);
     }
   }
 }
