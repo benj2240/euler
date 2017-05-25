@@ -200,5 +200,50 @@ namespace Euler
       
       return (long)(result / divisor);
     }
+
+    /// <summary>
+    /// The number less than <paramref name="cap"/> with the longest Collatz
+    ///   chain. If N is even, the next number in its chain is N/2.
+    ///   Otherwise, the next number is N*3+1.
+    /// It is conjectured that all chains end at 1.
+    /// </summary>
+    /// <param name="cap"></param>
+    /// <returns></returns>
+    public static int Euler014(int cap)
+    {
+      var lengths = new int[cap];
+      lengths[1] = 1;
+
+      return Enumerable.Range(1, cap)
+        .MaxBy( n => CollatzLength(n, lengths));
+    }
+
+    /// <summary>
+    /// Get the length of the Collatz chain starting at <paramref name="n"/>
+    /// </summary>
+    /// <param name="n"></param>
+    /// <param name="cache">An array of all known collatz chain lengths</param>
+    /// <remarks>Helper function for <see cref="Euler014(int)"/> </remarks>
+    private static int CollatzLength(long n, int[] cache)
+    {
+      bool cacheable = n < cache.Length;
+      int len = 0;
+
+      if (cacheable)
+        len = cache[n];
+
+      if (len > 0)
+      {
+        return len;
+      }
+      else
+      {
+        long successor = n.Even() ? n / 2 : n * 3 + 1;
+        len = 1 + CollatzLength(successor, cache);
+        if (cacheable)
+          cache[n] = len;
+        return len;
+      }
+    }
   }
 }

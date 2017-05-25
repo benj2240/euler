@@ -171,5 +171,17 @@ namespace EulerTests
     {
       Assert.AreEqual(5537376230, Solutions.Euler013());
     }
+
+    [TestMethod]
+    public void Euler014_Example()
+    {
+      Assert.AreEqual(9, Solutions.Euler014(15));
+    }
+
+    [TestMethod]
+    public void Euler014_Actual()
+    {
+      Assert.AreEqual(837799, Solutions.Euler014(1000000));
+    }
   }
 }

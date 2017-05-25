@@ -13,6 +13,11 @@ namespace Euler
       return n % d == 0;
     }
 
+    public static bool Even(this long n)
+    {
+      return (n & 1) == 0;
+    }
+
     public static IEnumerable<int> PrimeFactors(this long n)
     {
       var divisor = 2;

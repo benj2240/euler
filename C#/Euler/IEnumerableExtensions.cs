@@ -58,5 +58,43 @@ namespace Euler
     {
       return numbers.Aggregate(1, (a, b) => a * b);
     }
+
+    public static TElement MaxBy<TElement, TValue>(
+      this IEnumerable<TElement> sequence,
+      Func<TElement, TValue> selector
+      ) where TValue : IComparable<TValue>
+    {
+      TElement bestElement = default(TElement);
+      TValue maxValue = default(TValue);
+      TValue thisValue;
+      int state = 0;
+
+      foreach (TElement thisElement in sequence)
+      {
+        switch (state)
+        {
+          case 0:
+            // first element of the sequence; initialize best and max
+            bestElement = thisElement;
+            maxValue = selector(thisElement);
+            state = 1;
+            break;
+          case 1:
+            // subsequent elements; best and max exist
+            thisValue = selector(thisElement);
+            if (thisValue.CompareTo(maxValue) > 0)
+            {
+              bestElement = thisElement;
+              maxValue = thisValue;
+            }
+            break;
+        }
+      }
+
+      // In the case of an empty input sequence, would it be more
+      // idiomatic to return default(TElement), or throw an Exception?
+      // I'm going to go with the former for now at least.
+      return bestElement;
+    }
   }
 }
