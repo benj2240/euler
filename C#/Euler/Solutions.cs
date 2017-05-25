@@ -245,5 +245,29 @@ namespace Euler
         return len;
       }
     }
+
+    /// <summary>
+    /// The number of direct paths between diagonal corners of an NxN lattice
+    /// </summary>
+    /// <remarks>
+    /// This is a simple combinatorics question in a fancy suit.
+    /// </remarks>
+    public static long Euler015(int n)
+    {
+      return Enumerable.Range(1, n)
+        .Aggregate(1L, (acc, i) => acc * (2 * n + 1 - i) / i);
+    }
+
+    /// <summary>
+    /// The sum of the digits in the decimal representation of 2^n
+    /// </summary>
+    public static long Euler016(int n)
+    {
+      return BigInteger.Pow(new BigInteger(2), n)
+        .ToString()
+        .ToCharArray()
+        .Select(c => (int)c - 48) // here we go again
+        .Sum();
+    }
   }
 }

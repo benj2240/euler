@@ -59,6 +59,16 @@ namespace Euler
       return numbers.Aggregate(1, (a, b) => a * b);
     }
 
+    /// <summary>
+    /// The element of the input sequence which produces the maximum output
+    ///   for a given mapping function
+    /// </summary>
+    /// <typeparam name="TElement">The type of the input sequence</typeparam>
+    /// <typeparam name="TValue">The comparable output type of the mapping</typeparam>
+    /// <remarks>Returns the earlier element in the case of a tie</remarks>
+    /// <example>
+    ///   [-4, 0, 1, 3].MaxBy(x => x * x) returns -4
+    /// </example>
     public static TElement MaxBy<TElement, TValue>(
       this IEnumerable<TElement> sequence,
       Func<TElement, TValue> selector
@@ -67,34 +77,35 @@ namespace Euler
       TElement bestElement = default(TElement);
       TValue maxValue = default(TValue);
       TValue thisValue;
-      int state = 0;
+      bool hasValue = false;
 
       foreach (TElement thisElement in sequence)
       {
-        switch (state)
+        if (hasValue)
         {
-          case 0:
-            // first element of the sequence; initialize best and max
+          thisValue = selector(thisElement);
+          if (thisValue.CompareTo(maxValue) > 0)
+          {
             bestElement = thisElement;
             maxValue = selector(thisElement);
-            state = 1;
-            break;
-          case 1:
-            // subsequent elements; best and max exist
-            thisValue = selector(thisElement);
-            if (thisValue.CompareTo(maxValue) > 0)
-            {
-              bestElement = thisElement;
-              maxValue = thisValue;
-            }
-            break;
+          }
+        }
+        else
+        {
+          bestElement = thisElement;
+          maxValue = selector(thisElement);
+          hasValue = true;
         }
       }
 
-      // In the case of an empty input sequence, would it be more
-      // idiomatic to return default(TElement), or throw an Exception?
-      // I'm going to go with the former for now at least.
-      return bestElement;
+      if (hasValue)
+      {
+        return bestElement;
+      }
+      else
+      {
+        throw new ArgumentException("Sequence contains no elements");
+      }
     }
   }
 }
