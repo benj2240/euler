@@ -269,5 +269,14 @@ namespace Euler
         .Select(c => (int)c - 48) // here we go again
         .Sum();
     }
+
+    public static int Euler017(int n)
+    {
+      return Enumerable.Range(1, n)
+        .Select(x => x.ToEnglish()
+          .ToCharArray()
+          .Count(c => c != ',' && c != ' ' && c != '-'))
+        .Sum();
+    }
   }
 }

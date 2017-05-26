@@ -7,7 +7,7 @@ using System.Linq;
 namespace EulerTests
 {
   [TestClass]
-  public class Tests
+  public class EulerTests
   {
     [TestMethod]
     public void Euler001_Example()
@@ -206,6 +206,18 @@ namespace EulerTests
     public void Euler016_Actual()
     {
       Assert.AreEqual(1366, Solutions.Euler016(1000));
+    }
+
+    [TestMethod]
+    public void Euler017_Example()
+    {
+      Assert.AreEqual(19, Solutions.Euler017(5));
+    }
+
+    [TestMethod]
+    public void Euler017_Actual()
+    {
+      Assert.AreEqual(21124, Solutions.Euler017(1000));
     }
   }
 }

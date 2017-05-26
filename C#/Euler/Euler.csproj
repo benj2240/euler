@@ -49,6 +49,7 @@
     <Compile Include="IntegerExtensions.cs" />
     <Compile Include="IListExtensions.cs" />
     <Compile Include="LongExtensions.cs" />
+    <Compile Include="NumberTranslationExtensions.cs" />
     <Compile Include="Primes.cs" />
     <Compile Include="Pythagoras.cs" />
     <Compile Include="Solutions.cs" />
