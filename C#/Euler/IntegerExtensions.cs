@@ -53,11 +53,10 @@ namespace Euler
       return digits;
     }
 
-    public static IList<int> Digits(this int n)
+    public static List<int> Digits(this int n)
     {
-      var digits = n.Digits();
-      digits.Reverse();
-      return digits;
+      var digits = n.ReverseDigits();
+      return digits.Reverse().ToList();
     }
 
     public static bool Palindromic(this int n)

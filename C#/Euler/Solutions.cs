@@ -270,6 +270,10 @@ namespace Euler
         .Sum();
     }
 
+    /// <summary>
+    /// The number of alphabetic characters used when writing the integers
+    ///   one through N in long-form English.
+    /// </summary>
     public static int Euler017(int n)
     {
       return Enumerable.Range(1, n)
@@ -277,6 +281,19 @@ namespace Euler
           .ToCharArray()
           .Count(c => c != ',' && c != ' ' && c != '-'))
         .Sum();
+    }
+
+    /// <summary>
+    /// The cumulative product of d(10^0) * ... * d(10^maxPower), where d(n)
+    ///   is the value of the nth decimal digit of Champernowne's constant
+    /// </summary>
+    public static int Euler040(int maxPower)
+    {
+      Func<int, int> d = n => Champernowne.Digit(n);
+
+      return Enumerable.Range(0, maxPower + 1)
+        .Select(power => (int)Math.Pow(10, power))
+        .Aggregate(1, (p, n) => p * d(n));
     }
   }
 }

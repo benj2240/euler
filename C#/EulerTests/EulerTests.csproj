@@ -51,6 +51,7 @@
     <Compile Include="EulerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NumberTranslationTests.cs" />
+    <Compile Include="ChampernowneTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

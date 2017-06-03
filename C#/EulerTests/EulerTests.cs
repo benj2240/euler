@@ -219,5 +219,11 @@ namespace EulerTests
     {
       Assert.AreEqual(21124, Solutions.Euler017(1000));
     }
+
+    [TestMethod]
+    public void Euler040_Actual()
+    {
+      Assert.AreEqual(210, Solutions.Euler040(6));
+    }
   }
 }

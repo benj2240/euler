@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Champernowne.cs" />
     <Compile Include="Fibonacci.cs" />
     <Compile Include="ICollectionExtensions.cs" />
     <Compile Include="IDictionaryExtensions.cs" />
