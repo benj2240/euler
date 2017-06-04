@@ -335,6 +335,34 @@ namespace Euler
     }
 
     /// <summary>
+    /// The sum of all numbers up to <paramref name="max"/> which are part of
+    ///   an "amicable" pair: X and Y are amicable if they are the sum of each
+    ///   other's proper divisors.
+    /// </summary>
+    public static int Euler021(int max)
+    {
+      var divisorSums = new int[max + 1];
+
+      for (int i = 1; i <= max / 2; i += 1)
+        for (int multiple = 2 * i; multiple <= max; multiple += i)
+          divisorSums[multiple] += i;
+
+      int sum = 0;
+      for (int i = 2; i <= max; i += 1)
+      {
+        var divisorSum = divisorSums[i];
+        if (divisorSum <= max
+          && divisorSums[divisorSum] == i
+          && divisorSum != i)
+        {
+          sum += i;
+        }
+      }
+      
+      return sum;
+    }
+
+    /// <summary>
     /// The cumulative product of d(10^0) * ... * d(10^maxPower), where d(n)
     ///   is the value of the nth decimal digit of Champernowne's constant
     /// </summary>
