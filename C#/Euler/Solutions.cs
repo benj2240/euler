@@ -322,6 +322,19 @@ namespace Euler
     }
 
     /// <summary>
+    /// The sum of the digits in the decimal representation of N!
+    /// </summary>
+    public static int Euler020(int n)
+    {
+      return (new BigInteger(n))
+        .Factorial()
+        .ToString()
+        .ToCharArray()
+        .Select(c => (int)c - 48)
+        .Sum();
+    }
+
+    /// <summary>
     /// The cumulative product of d(10^0) * ... * d(10^maxPower), where d(n)
     ///   is the value of the nth decimal digit of Champernowne's constant
     /// </summary>
