@@ -251,6 +251,12 @@ namespace EulerTests
     }
 
     [TestMethod]
+    public void Euler022_Actual()
+    {
+      Assert.AreEqual(871198282, Solutions.Euler022());
+    }
+
+    [TestMethod]
     public void Euler040_Actual()
     {
       Assert.AreEqual(210, Solutions.Euler040(6));

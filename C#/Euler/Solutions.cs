@@ -358,8 +358,23 @@ namespace Euler
           sum += i;
         }
       }
-      
+
       return sum;
+    }
+
+    public static int Euler022()
+    {
+      Func<string, string> identity = x => x;
+      int position = 0;
+      Func<string, int> score = name => name.ToCharArray().Select(c => (int)c - 64).Sum();
+      return Input.Euler022()
+        .OrderBy(identity)
+        .Select(name =>
+        {
+          position += 1;
+          return score(name) * position;
+        })
+        .Sum();
     }
 
     /// <summary>

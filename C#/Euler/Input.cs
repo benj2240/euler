@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -155,5 +157,13 @@ namespace Euler
       new int[] {63,66, 4,68,89,53,67,30,73,16,69,87,40,31},
       new int[] { 4,62,98,27,23, 9,70,98,73,93,38,53,60, 4,23}
     };
+
+    public static string[] Euler022()
+    {
+      string fileName = "euler022_input.txt";
+      string filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), fileName);
+      return File.ReadAllText(filePath)
+        .Split(new char[] { '"', ',' }, StringSplitOptions.RemoveEmptyEntries );
+    }
   }
 }
