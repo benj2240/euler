@@ -304,6 +304,24 @@ namespace Euler
     }
 
     /// <summary>
+    /// Calculate the number of Sundays that were the first of the month,
+    ///   in the range Jan 1st, 1901 to Dec 31st, 2000 (inclusive)
+    /// </summary>
+    public static int Euler019()
+    {
+      var current = new DateTime(1901, 1, 1);
+      var end = new DateTime(2000, 12, 1);
+      var sundayCount = 0;
+      while (current <= end)
+      {
+        if (current.DayOfWeek == DayOfWeek.Sunday)
+          sundayCount += 1;
+        current = current.AddMonths(1);
+      }
+      return sundayCount;
+    }
+
+    /// <summary>
     /// The cumulative product of d(10^0) * ... * d(10^maxPower), where d(n)
     ///   is the value of the nth decimal digit of Champernowne's constant
     /// </summary>
