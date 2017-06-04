@@ -193,11 +193,11 @@ namespace Euler
     {
       var result = Input.Euler013
         .Select(str => BigInteger.Parse(str))
-        .Aggregate((a, b) => a + b );
+        .Aggregate((a, b) => a + b);
 
       var size = (int)Math.Ceiling(BigInteger.Log10(result + 1));
       var divisor = BigInteger.Pow(new BigInteger(10), size - 10);
-      
+
       return (long)(result / divisor);
     }
 
@@ -215,7 +215,7 @@ namespace Euler
       lengths[1] = 1;
 
       return Enumerable.Range(1, cap)
-        .MaxBy( n => CollatzLength(n, lengths));
+        .MaxBy(n => CollatzLength(n, lengths));
     }
 
     /// <summary>
@@ -281,6 +281,26 @@ namespace Euler
           .ToCharArray()
           .Count(c => c != ',' && c != ' ' && c != '-'))
         .Sum();
+    }
+
+    /// <summary>
+    /// The minimum cost of a path through a static input triangle
+    /// </summary>
+    /// <returns></returns>
+    public static int Euler018()
+    {
+      var triangle = Input.Euler018;
+      Func<int, int, int> max = (a, b) => a > b ? a : b;
+
+      for (int row = triangle.Length - 1; row > 0; row -= 1)
+      {
+        for (int col = 0; col + 1 < triangle[row].Length; col += 1)
+        {
+          triangle[row - 1][col] += max(triangle[row][col], triangle[row][col + 1]);
+        }
+      }
+
+      return triangle[0][0];
     }
 
     /// <summary>
