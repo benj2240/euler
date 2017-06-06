@@ -8,7 +8,7 @@ def get_names_http
 end
 
 def get_names_filesystem
-  File.read("euler022_input.txt").scan(/[A-Z]+/)
+  File.read("../euler022_input.txt").scan(/[A-Z]+/)
 end
 
 module Enumerable
