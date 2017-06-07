@@ -29,11 +29,6 @@ class Integer
   end
 end
 
-def squares_up_to n
-  naturals.map{ |x| x * x }
-    .take_while{ |sq| sq < n }
-end
-
 def euler046
   odds
     .select{ |n| n.composite? }
